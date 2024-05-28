@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <link rel="stylesheet" href="flight.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB5IXNFci2iMcBzmRlTQTG8wIPoYqeYF1d3RUTjPJzkK9x1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-es2wKZ4/K5XA3Bt/6wKq5ESwaJ1dmv9v2V6cVXn6F" crossorigin="anonymous"></script>
+<style>
+    .modal-content {
+    max-width: 90%;
+    margin: auto;
+  }
+
+  #cancelRequestCard {
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style></head>
+
+<body>
+  <header class="navbarContainer home-navbar-interactive">
+    <span class="logo">SkyLine<img src="logo1.png" alt="" style="max-height: 25px; margin-left: 2px; margin-bottom: 5px;"></span>
+    <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <nav class="home-links">
+        <span class="bodySmall home-link" onclick="openHomePage()">Home</span>
+        <span class="home-nav42 bodySmall home-link" onclick="openDestinationsPage()">Destinations</span>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#contactModal">Contact</button>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#PricingModal">Pricing</button>
+    </nav>
+</header>
+
+<div class="flight-booking-container">
+  <div class="flight-booking">
+      <h3><b><large>All Flights Information</large></b></h3>
+      <div class="inner-container">
+          <div class="row">
+              <div class="Flight-ID">
+                  <label for="searchFlight-id">Search Flight-ID:</label>
+                  <input type="text" id="searchFlight-id" placeholder="Enter Flight-ID">
+                  <button class="search-flight" onclick="fetchFlightById()">Search</button>
+              </div>
+          </div>
+          <div class="row">
+              <div class="Flight-ID">
+                  <label for="Flight-ID">Flight-ID:</label>
+                  <input type="text" id="Flight-ID" placeholder="flight" readonly>
+              </div>
+              <div class="duration">
+                  <label for="duration">Duration:</label>
+                  <input type="text" id="duration" placeholder="" readonly>
+              </div>
+              <div class="distance">
+                  <label for="distance">Distance:</label>
+                  <input type="text" id="distance" placeholder="" readonly>
+              </div>
+          </div>
+          <div class="row">
+              <div class="departure">
+                  <label for="departing">Departure:</label>
+                  <input type="text" id="departing" placeholder="" readonly>
+              </div>
+              <div class="return">
+                  <label for="returning">Arrival:</label>
+                  <input type="text" id="returning" placeholder="" readonly>
+              </div>
+              <div class="flight-status">
+                  <label for="flight-status">Flight-status:</label>
+                  <input type="text" id="flight-status" placeholder="" readonly>
+              </div>
+              <div class="AirLine-type">
+                  <label for="AirLine-type">Airline-ID:</label>
+                  <input type="text" id="AirLine-type" placeholder="" readonly>
+              </div>
+          </div>
+          <div class="row">
+              <div class="Airport-type1">
+                  <label for="Airport-type1">Departure Airport</label>
+                  <input type="text" id="Airport-type1" placeholder="" readonly>
+              </div>
+              <div class="Airport-type2">
+                  <label for="Airport-type2">Arrival Airport</label>
+                  <input type="text" id="Airport-type2" placeholder="" readonly>
+              </div>
+              <div class="AirCraft-type">
+                  <label for="AirCraft-type">AirCraft-ID:</label>
+                  <input type="text" id="AirCraft-type" placeholder="" readonly>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<div id="cancelRequestSection" class="container-fluid text-center my-5 cancel-request">
+<h1>Cancel Flight Request</h1>
+<p>Manage your flight cancellations here.</p>
+<div class="row">
+  <div class="row">
+    <div class="col">
+      <label for="flightSelect">Select Flight:</label>
+      <select id="flightSelect" class="form-select mb-3" required>
+      </select>
+    </div>
+  </div>
+</div>  
+<div class="card" id="cancelRequestCard" >
+  <div class="row">
+  <div class="card-body">
+    <h5 class="card-title">Flight ID: <span id="cancelFlightId"></span></h5>
+    <p class="card-text">Airline has cancelled the flight</p>
+
+    <button class="btn btn-danger" onclick="acceptCancelRequest()">Accept</button>
+    <button class="btn btn-secondary" onclick="declineCancelRequest()">Decline</button>
+  </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="Container text-center my-5">
+  <h1> Effortless Payment Experience</h1>
+  <div>
+      <p>Your travel experience seamless by completing your payment securely and swiftly. Our airline management
+         system ensures that your payment details
+          are protected at all times. Enjoy peace of mind while booking your flight.
+      </p>
+  </div>
+</div>
+
+<div class="container-fluid text-center my-5 pay-ques">
+<div class="row">
+  <div class="col-lg-6">
+    <h2>Frequently Asked Questions</h2>
+    <p>Common questions</p>
+    <p>Here are some of the most common questions that we get.</p>
+    <img src="pay1.jpg" alt="" style="max-width: 100%;">
+  </div>
+  <div class="col-lg-6">
+    <h4>How can I make a payment for my flight booking?</h4>
+    <p>You can make a payment for your flight booking using credit or debit cards, as well as other online payment methods.</p>
+    <h4>Is it safe to enter my payment details on this website?</h4>
+    <p>Yes, our website uses secure encryption technology to protect your payment information and ensure safe transactions.</p>
+    <h4>Can I request a refund for my ticket purchase?</h4>
+    <p>Refund policies vary based on the type of ticket purchased. Please refer to our refund policy or contact customer support for assistance.</p>
+    <h4>Are there any additional fees or charges when making a payment?</h4>
+    <p>Additional fees or charges may apply depending on the payment method chosen. Please review the payment details before completing the transaction.</p>
+    <h4>What should I do if my payment is declined?</h4>
+    <p>If your payment is declined, please double-check the payment details entered and ensure there are sufficient funds in your account. You may also try using a different payment method.</p>
+  </div>
+</div>
+</div>
+
+
+
+<footer>
+  <div class="container-fluid text-center">
+  <h1>SkyLine</h1>
+Home
+Book Flight
+Contact Us
+</div>
+  <hr>
+<div class="d-flex flex-row justify-content-between mx-5 pt-5">
+  <div class="d-flex flex-row gap-5">
+    <p class="d-flex align-items-center gap-2">
+      &copy; 2024 SKYLINE <img src="logo1.png" alt="" style="max-height: 20px; margin-left: 5px;">
+    </p>
+    
+  </div>
+  <div class="d-flex flex-row gap-5 px-5 py-3">
+    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+  </div>
+  
+  
+</div>
+</footer>
+
+
+<!-- contact MODALS -->
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <ul>
+                  <li>Email <a href="mailto:skyline@gmail.com">skyline@gmail.com</a></li>
+                  <li>Instagram <a href="#">SkyLine Social Media controller: Abdul Wahab</a></li>
+                  <li>Address: Comsats, Lahore.</li>
+              </ul>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Pricing Modal -->
+<div class="modal fade" id="PricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <section class="pricingSection">
+                  <div class="pricingContainer home-container">
+                      <div class="pricing-grid">
+                          <div class="pricing-card">
+                              <h3 class="pricing-title">Economy Class</h3>
+                              <p class="pricing-description">Average Price for economy ticket</p>
+                              <p class="pricing-price">5,000 PKR to 15,000 PKR</p>
+                          </div>
+                          <div class="pricing-card">
+                              <h3 class="pricing-title">First Class</h3>
+                              <p class="pricing-description">Average Price for First Class ticket</p>
+                              <p class="pricing-price">25,000 PKR +</p>
+                          </div>
+                          <div class="pricing-card">
+                              <h3 class="pricing-title">Special SkyLine</h3>
+                              <p class="pricing-description">Special discounted tickets for SkyLine members</p>
+                              <p class="pricing-price">4,000 to 50,000 PKR</p>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<script>
+
+function openHomePage() {
+    window.location.href = '../home.html';
+}
+
+
+function openDestinationsPage() {
+              window.location.href = 'destination.html';
+            }
+  async function fetchFlightById() {
+      const flightId = document.getElementById('searchFlight-id').value;
+      if (!flightId) {
+          alert('Please enter a flight ID.');
+          return;
+      }
+
+      try {
+          const response = await fetch(`http://localhost:5900/flights/${flightId}`);
+          if (!response.ok) {
+              throw new Error('Flight not found');
+          }
+          const flight = await response.json();
+          populateFlightInfo(flight);
+      } catch (error) {
+          console.error('Error fetching flight:', error);
+          alert('Error fetching flight data. Please try again.');
+      }
+  }
+
+  function populateFlightInfo(flight) {
+      document.getElementById('Flight-ID').value = flight.flight_id;
+      const duration = `${flight.duration_minutes.hours}h ${flight.duration_minutes.minutes}m`;
+      document.getElementById('duration').value = duration;
+      document.getElementById('distance').value = `${flight.distance_km} km`;
+      document.getElementById('departing').value = new Date(flight.departure_time).toLocaleString();
+      document.getElementById('returning').value = new Date(flight.arrival_time).toLocaleString();
+      document.getElementById('flight-status').value = flight.flight_status;
+      document.getElementById('AirLine-type').value = flight.airline_id;
+      document.getElementById('Airport-type1').value = flight.departure_airport_code;
+      document.getElementById('Airport-type2').value = flight.arrival_airport_code;
+      document.getElementById('AirCraft-type').value = flight.aircraft_id;
+  }
+
+
+function showCancelRequestCard(flightId) {
+    document.getElementById('cancelFlightId').textContent = flightId;
+    document.getElementById('cancelRequestCard').style.display = 'block';
+  }
+
+  function acceptCancelRequest() {
+    const flightId = document.getElementById('cancelFlightId').textContent;
+    console.log('Attempting to cancel flight with ID:', flightId);
+
+    fetch(`http://localhost:5900/flights/${flightId}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Received response:', data);
+      if (data.message === 'Flight cancelled successfully') {
+        alert('Flight cancelled successfully');
+        document.getElementById('cancelRequestCard').style.display = 'none';
+      } else if (data.error === 'Flight not found') {
+        alert('Flight not found');
+      } else {
+        alert('Failed to cancel flight');
+      }
+    })
+    .catch(error => {
+      console.error('Error cancelling flight:', error);
+      alert('Error cancelling flight. Please try again.');
+    });
+  }
+
+  function declineCancelRequest() {
+    document.getElementById('cancelRequestCard').style.display = 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+  // Function to fetch all flights and populate the dropdown
+  async function fetchAndPopulateFlights() {
+      try {
+          const response = await fetch('http://localhost:5900/flights');
+          if (!response.ok) {
+              throw new Error('Failed to fetch flights');
+          }
+          const flights = await response.json();
+          const flightSelect = document.getElementById('flightSelect');
+
+          // Clear existing options
+          flightSelect.innerHTML = '';
+
+          // Populate dropdown with flight options
+          flights.forEach(flight => {
+              const option = document.createElement('option');
+              option.value = flight.flight_id;
+              option.textContent = `Flight ID: ${flight.flight_id}`;
+              flightSelect.appendChild(option);
+          });
+      } catch (error) {
+          console.error('Error fetching flights:', error);
+      }
+  }
+
+  // Populate flights dropdown on page load
+  await fetchAndPopulateFlights();
+
+  // Event listener for flight selection
+  document.getElementById('flightSelect').addEventListener('change', () => {
+      const selectedFlightId = document.getElementById('flightSelect').value;
+      document.getElementById('cancelFlightId').textContent = selectedFlightId;
+  });
+});
+
+
+
+</script>
+
+<script src="booking.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

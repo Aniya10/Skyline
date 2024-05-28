@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Crew CRUD Operations</title>
+    <link rel="stylesheet" href="crew.css">
+    <style>
+        
+        
+
+        h2 {
+            color: #618264;
+        }
+
+        button {
+            background-color: #768b43;
+            color: #31180a;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #61bb60;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #B0D9B1;
+            border-radius: 5px;
+            width: calc(100% - 20px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #618264;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #618264;
+            color: white;
+        }
+
+        td {
+            background-color: #D0E7D2;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <header class="navbarContainer home-navbar-interactive">
+        <span class="logo">SkyLine<img src="logo1.png" alt="" style="max-height: 25px; margin-left: 2px; margin-bottom: 5px;"></span>
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav class="home-links">
+            <span class="bodySmall home-link" onclick="openHomePage()">Home</span>
+            <span class="home-nav42 bodySmall home-link" onclick="openDestinationsPage()">Destinations</span>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#contactModal">Contact</button>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#PricingModal">Pricing</button>
+        </nav>
+    </header>
+    
+    <h2>Get All Flight Crew</h2>
+    <button onclick="getAllFlightCrew()">Get All</button>
+    <table id="allFlightCrew">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Position</th>
+                <th>Address</th>
+                <th>Contact Phone</th>
+                <th>Contact Email</th>
+                <th>Flight ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <h2>Get Flight Crew By ID</h2>
+    <input type="text" id="crewId" placeholder="Enter ID">
+    <button onclick="getFlightCrewById()">Get By ID</button>
+    <table id="flightCrewById" class="hidden">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Position</th>
+                <th>Address</th>
+                <th>Contact Phone</th>
+                <th>Contact Email</th>
+                <th>Flight ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <h2>Create Flight Crew Member</h2>
+    <input type="text" id="newCrewId" placeholder="Enter ID">
+    <input type="text" id="newFirstName" placeholder="Enter First Name">
+    <input type="text" id="newLastName" placeholder="Enter Last Name">
+    <input type="text" id="newGender" placeholder="Enter Gender">
+    <input type="text" id="newPosition" placeholder="Enter Position">
+    <input type="text" id="newAddress" placeholder="Enter Address">
+    <input type="text" id="newContactPhone" placeholder="Enter Contact Phone">
+    <input type="text" id="newContactEmail" placeholder="Enter Contact Email">
+    <input type="text" id="newFlightId" placeholder="Enter Flight ID">
+    <button onclick="createFlightCrew()">Create</button>
+    <pre id="createdFlightCrew"></pre>
+
+    <h2>Update Flight Crew Member</h2>
+    <input type="text" id="updateCrewId" placeholder="Enter ID">
+    <input type="text" id="updateFirstName" placeholder="Enter New First Name">
+    <input type="text" id="updateLastName" placeholder="Enter New Last Name">
+    <input type="text" id="updateGender" placeholder="Enter New Gender">
+    <input type="text" id="updatePosition" placeholder="Enter New Position">
+    <input type="text" id="updateAddress" placeholder="Enter New Address">
+    <input type="text" id="updateContactPhone" placeholder="Enter New Contact Phone">
+    <input type="text" id="updateContactEmail" placeholder="Enter New Contact Email">
+    <input type="text" id="updateFlightId" placeholder="Enter New Flight ID">
+    <button onclick="updateFlightCrew()">Update</button>
+    <pre id="updatedFlightCrew"></pre>
+
+    <h2>Delete Flight Crew Member</h2>
+    <input type="text" id="deleteCrewId" placeholder="Enter ID">
+    <button onclick="deleteFlightCrew()">Delete</button>
+    <pre id="deletedFlightCrew"></pre>
+
+
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Email <a href="mailto:skyline@gmail.com">skyline@gmail.com</a></li>
+                        <li>Instagram <a href="#">SkyLine Social Media controller: Abdul Wahab</a></li>
+                        <li>Address: Comsats, Lahore.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <!-- Pricing Modal -->
+      <div class="modal fade" id="PricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <section class="pricingSection">
+                        <div class="pricingContainer home-container">
+                            <div class="pricing-grid">
+                                <div class="pricing-card">
+                                    <h3 class="pricing-title">Economy Class</h3>
+                                    <p class="pricing-description">Average Price for economy ticket</p>
+                                    <p class="pricing-price">5,000 PKR to 15,000 PKR</p>
+                                </div>
+                                <div class="pricing-card">
+                                    <h3 class="pricing-title">First Class</h3>
+                                    <p class="pricing-description">Average Price for First Class ticket</p>
+                                    <p class="pricing-price">25,000 PKR +</p>
+                                </div>
+                                <div class="pricing-card">
+                                    <h3 class="pricing-title">Special SkyLine</h3>
+                                    <p class="pricing-description">Special discounted tickets for SkyLine members</p>
+                                    <p class="pricing-price">4,000 to 50,000 PKR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <script>
+      
+      function openHomePage() {
+          window.location.href = '../home.html';
+      }
+      
+      
+      function openDestinationsPage() {
+                    window.location.href = 'destination.html';
+                  }
+       </script>      
+    <script src="app.js"></script>
+</body>
+</html>

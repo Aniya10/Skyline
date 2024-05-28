@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Skyline <img src="FrontEnd/logo1.png" alt="" style="max-height: 25px; margin-left: 2px;"> Login Page </h1>
+        <div class="login-form">
+            <form id="login-form" action="http://127.0.0.1:5900/authenticate" method="post">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                <button type="submit" class="button">Login</button>
+            </form>
+            <div id="error-message" style="color: red; display: none;">Invalid email or password</div>
+        </div>
+    </div>
+</body>
+</html>

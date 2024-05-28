@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More</title>
+    <link rel="stylesheet" href="learnmore.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: beige;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 60px; /* Added padding */
+}
+
+.container-fluid {
+    background-color: beige;
+    text-align: center;
+}
+
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAxL3Jhd3BpeGVsX29mZmljZV8yM19vbGl2ZV9ncmVlbl93YXRlcmNvbG9yX2Flc3RoZXRpY190aGVtZWRfd2FsbF9iYWU4MTJiMC02YjU3LTQ0YTItYmJkNy0wZGZiNTYwZjc2ODZfMS5qcGc.jpg') no-repeat center center/cover;
+  padding: 15px 30px; /* Increased padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  z-index: 1000;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #28430a;
+}
+
+@media screen and (max-width: 768px) {
+  .navbarContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .home-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #28430a; /* Logo color */
+}
+
+.home-links {
+  display: flex;
+  justify-content: center; 
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  position: relative; 
+}
+
+
+
+.home-link {
+  position: relative;
+  cursor: pointer; 
+  padding-bottom: 5px; 
+}
+
+.home-link::after {
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+  bottom: 0;
+  width: 100%; 
+  height: 3px; 
+  background-color: rgb(4, 57, 4); 
+  border-radius: 2px; 
+  transform: scaleX(0); 
+  transition: transform 0.4s ease; 
+}
+
+.home-link:hover::after {
+  transform: scaleX(1); 
+}
+
+.home-links span:hover, .home-links button:hover {
+  color: #6ab55f; 
+}
+
+
+.home-links span,
+.home-links button {
+  color: #1b2e05; /* Link color */
+  font-weight: bold; /* Bold font */
+  text-decoration: none; /* Remove underline */
+  padding: 10px 20px; /* Padding around links */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.home-links span:hover,
+.home-links button:hover {
+  background-color: rgba(7, 84, 18, 0.1); /* Light background on hover */
+}
+
+
+.pricingSection {
+  padding: 2rem 0;
+}
+
+.pricingContainer {
+  text-align: center;
+}
+
+.pricing-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.pricing-card {
+  color: #31180a;
+  background-color: #768b43;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-description, .pricing-price {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+
+.modal-title {
+  color: #111d03;
+}
+
+.modal-body {
+  color: #7b4425;
+  background-color: beige;
+}
+
+.modal-header, .modal-footer {
+  background-color: #768b43;
+}
+.card {
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-title {
+    background-color: #768b43;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 15px;
+    margin-bottom: 0;
+}
+
+.card-text {
+    color: #666;
+}
+
+.container{
+    margin-top: 100px;
+}
+</style>
+</head>
+<body>
+    <header class="navbarContainer home-navbar-interactive">
+        <span class="logo">SkyLine<img src="logo1.png" alt="" style="max-height: 25px; margin-left: 2px; margin-bottom: 5px;"></span>
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav class="home-links">
+            <span class="bodySmall home-link" onclick="openHomePage()">Home</span>
+            <span class="home-nav42 bodySmall home-link" onclick="openDestinationsPage()">Destinations</span>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</button>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#PricingModal">Pricing</button>
+        </nav>
+    </header>
+
+
+      <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-title">Integrated Operations</div>
+                    <div class="card-body">
+                        <p class="card-text">Skeline seamlessly integrates various operations, including reservations, ticketing
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-title">Optimized Resource Allocation</div>
+                        <div class="card-body">
+                            <p class="card-text">Skeline utilizes advanced algorithms to optimize resource allocation, ensuring efficient utilization of aircraft, crew, and other resources. This optimization leads to cost savings and improved operational performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-title">Enhanced Passenger Experience</div>
+                        <div class="card-body">
+                            <p class="card-text">Skeline offers features to enhance the passenger experience, such as easy online booking, personalized services, and real-time flight information updates. By prioritizing passenger satisfaction, Skeline helps airlines build loyalty and increase customer retention.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-title">Data-driven Insights</div>
+                        <div class="card-body">
+                            <p class="card-text">Skeline provides comprehensive analytics and reporting tools that offer valuable insights into operational performance, passenger behavior, and market trends. These insights empower airlines to make informed decisions and adapt their strategies for greater success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-title">Scalability and Flexibility</div>
+                        <div class="card-body">
+                            <p class="card-text">Whether you're a small regional carrier or a large international airline, Skeline is designed to scale with your business needs. Its modular architecture allows for easy customization and integration with existing systems, ensuring flexibility to adapt to changing requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- contact MODALS -->
+    
+     <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Email <a href="mailto:skyline@gmail.com">skyline@gmail.com</a></li>
+                        <li>Instagram <a href="#">SkyLine Social Media controller: Abdul Wahab</a></li>
+                        <li>Address: Comsats, Lahore.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <!-- Pricing Modal -->
+      <div class="modal fade" id="PricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <section class="pricingSection">
+                        <div class="pricingContainer home-container">
+                            <div class="pricing-grid">
+                                <div class="pricing-card">
+                                    <h3 class="pricing-title">Economy Class</h3>
+                                    <p class="pricing-description">Average Price for economy ticket</p>
+                                    <p class="pricing-price">5,000 PKR to 15,000 PKR</p>
+                                </div>
+                                <div class="pricing-card">
+                                    <h3 class="pricing-title">First Class</h3>
+                                    <p class="pricing-description">Average Price for First Class ticket</p>
+                                    <p class="pricing-price">25,000 PKR +</p>
+                                </div>
+                                <div class="pricing-card">
+                                    <h3 class="pricing-title">Special SkyLine</h3>
+                                    <p class="pricing-description">Special discounted tickets for SkyLine members</p>
+                                    <p class="pricing-price">4,000 to 50,000 PKR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <script>
+      
+      function openHomePage() {
+          window.location.href = '../home.html';
+      }
+      
+      
+      function openDestinationsPage() {
+                    window.location.href = 'destination.html';
+                  }
+    </script>
+      
+    </body>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </html>
+    

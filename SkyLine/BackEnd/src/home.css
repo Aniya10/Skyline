@@ -1,0 +1,575 @@
+/* Light mode */
+.light-mode {
+    --background-color: #fff;
+    --text-color: #1b2e05;
+    
+}
+
+/* Dark mode */
+.dark-mode {
+    --background-color: #021b09;
+    --text-color: #eedbdb;
+   
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    /* Add more styles for body */
+}
+
+/* Add styles for mode toggle icon */
+.mode-toggle {
+    cursor: pointer;
+    color: #000; /* Color of the icon in light mode */
+}
+
+.mode-toggle:hover {
+    color: #666; /* Change color on hover */
+}
+
+/*body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #1b2e05;
+    background-color: beige;
+}
+*/
+.home-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.home-hero-sub-heading{
+    font-weight:bolder;
+}
+.navbarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAxL3Jhd3BpeGVsX29mZmljZV8yM19vbGl2ZV9ncmVlbl93YXRlcmNvbG9yX2Flc3RoZXRpY190aGVtZWRfd2FsbF9iYWU4MTJiMC02YjU3LTQ0YTItYmJkNy0wZGZiNTYwZjc2ODZfMS5qcGc.jpg') no-repeat center center/cover;
+    padding: 15px 30px; /* Increased padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 1000;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #28430a;
+}
+
+@media screen and (max-width: 768px) {
+    .navbarContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .home-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .home-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28430a; /* Logo color */
+}
+.home-links {
+    position: relative; /* Positioning context for the pseudo-element */
+    display: flex;
+    gap: 20px;
+}
+
+.home-link {
+    position: relative;
+    cursor: pointer; 
+    padding-bottom: 5px; 
+}
+
+.home-link::after {
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    bottom: 0;
+    width: 100%; 
+    height: 3px; 
+    background-color: rgb(4, 57, 4); 
+    border-radius: 2px; 
+    transform: scaleX(0); 
+    transition: transform 0.4s ease; 
+}
+
+.home-link:hover::after {
+    transform: scaleX(1); 
+}
+
+.home-links span:hover, .home-links button:hover {
+    color: #6ab55f; 
+}
+
+.home-links span, .home-links button {
+    margin-right: 20px;
+    margin-left: 10px; 
+    color: #28430a; 
+    font-weight: bold; 
+}
+
+
+
+.home-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.home-login.buttonFlat {
+    border: 2px solid rgb(26, 26, 26); /* White border */
+    color: #31180a;
+    background: #90ab4d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.home-login.buttonFlat:hover {
+    background: #1b2e05;
+    transform: translateY(-5px); /* Added hover transform effect */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* Increased shadow on hover */
+    color: wheat;
+}
+
+.buttonFlat, .buttonFilled {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonFlat {
+    background-color: transparent;
+    border: 1px solid #333;
+    color: #7b4425;
+    font-weight: bold;
+}
+
+.buttonFilled {
+    background-color: #1b2e05;
+    color: #28430a;
+    border: none;
+    font-weight: bold;
+
+}
+
+.home-hero {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.heroContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home-hero-heading {
+    margin-bottom: 20px;
+    color: #7b4425;
+}
+
+.home-hero-sub-heading {
+    color: #7b4425;
+}
+
+.home-btn-group {
+    margin-top: 30px;
+}
+
+.home-separator {
+    height: 2px;
+    background-color: #555;
+    margin: 20px 0;
+}
+
+.home-icon-group1 {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.socialIcons {
+    width: 40px;
+    height: 40px;
+    fill: #fff;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.buttonFilled {
+    background-color: #111d03;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Feature Section */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.feature-item {
+    color: #31180a;
+    background-color: #768b43;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Pricing Section */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.pricing-card {
+    color: #31180a;
+    background-color: #768b43;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Footer Section */
+.footerContainer {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.socialIcons {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+    margin-left: 10px;
+}
+
+.home-icon-group1 {
+    display: flex;
+}
+
+.home-links button {
+    font-size: inherit;
+    font-family: inherit;
+    color: #333;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-title {
+    color: #111d03;
+}
+
+.modal-body {
+    color: #7b4425;
+    background-color: beige;
+}
+
+.modal-header, .modal-footer {
+    background-color: #768b43;
+}
+
+.carousel-item button {
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.pricingSection {
+    padding: 2rem 0;
+}
+
+.pricingContainer {
+    text-align: center;
+}
+
+.pricing-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.pricing-card {
+    background-color: #768b43;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-description, .pricing-price {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* Pricing Section */
+.f1-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.f1-card {
+    color: #31180a;
+    background-color: #768b43;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.f1-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s 0.5s forwards;
+}
+.f1-card {
+    color: #31180a;
+    background-color: #768b43;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.f1-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.f1-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.f1-description {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.f1-price {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.spaced-button {
+    margin-right: 10px; /* Adjust the space between buttons */
+}
+
+.spaced-button:not(:last-child) {
+    border-color: #5c4020; /* Dark brown border color */
+}
+
+.btn-group {
+    border: 2px solid #5c4020; /* Dark brown border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding inside the border */
+}
+
+
+#dataContainer{
+    @keyframes slideInRows {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+    
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+        color: #31180a;
+        transition: background-color 0.3s;
+    }
+    
+    th:nth-child(odd) {
+        background-color: #396d39; /* Light green shade for odd columns */
+    }
+    
+    th:nth-child(even) {
+        background-color: #498249; /* Different light green shade for even columns */
+    }
+    
+    tbody tr {
+        animation: slideInRows 1s ease-in-out; /* Increased duration */
+    }
+    
+    tbody tr:nth-child(odd) {
+        background-color: beige; /* Light grey shade for odd rows */
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: beige; /* Very light green shade for even rows */
+    }
+    
+    tbody tr:hover {
+        background-color: #77b277;
+        cursor: pointer;
+    }
+    
+}
+
+.col-lg-4 img {
+    display: block;
+    margin: 0 auto; 
+  }
+  .custom-container {
+    padding: 20px; 
+    margin-top: 40px; 
+  }
+  
+  .custom-container h1,
+  .custom-container p {
+    color: #331808;
+   
+  }
+  
+  h2{
+    color: #1b2e05;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .row > div {
+    flex: 1;
+    margin: 10px;
+  }  
+
+
+  #viewCrewModal .modal-dialog {
+    max-width: 1500px; /* Adjust the width as needed */
+}
+
+/* Custom styles for table */
+#crewTable {
+    border-collapse: collapse; /* Collapse border */
+    width: 100%;
+}
+
+#crewTable th,
+#crewTable td {
+    border: 1px solid #000; /* Add border to table cells */
+    padding: 8px; /* Add padding */
+}
+
+/* Custom styles for buttons */
+#addCrewButton {
+    background-color: green; /* Set background color to green */
+    transition: background-color 0.3s; /* Add transition for smoother hover effect */
+}
+
+#addCrewButton:hover {
+    background-color: darkgreen; /* Darken the background color on hover */
+}
+
+.sky{
+    color: #31180a;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.carousel-item h2{
+    color: beige;
+
+}

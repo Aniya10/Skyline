@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <style>
+
+        .home-link {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        #popupMessage {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #668c07;
+            color: #240d0f;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+        }
+
+    .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+    </style>
+</head>
+
+<body>
+    <div id="popupMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);  background-color: #668c07;
+    color: #240d0f; padding: 20px; border: 3px solid #100f0f; border-radius: 5px; z-index: 9999; text-align: center; font-weight: bolder;">
+        <p>Please login to access the content of SkyLine!</p>
+    </div>
+
+    <div class="home-container">
+        <header class="navbarContainer home-navbar-interactive">
+            <span class="logo">SkyLine<img src="FrontEnd/logo1.png" alt="" style="max-height: 25px; margin-left: 2px; margin-bottom: 5px;"></span>
+    <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <div class="mode-toggle" onclick="toggleMode()">
+        <i class="fas fa-sun"></i> <!-- Font Awesome sun icon -->
+    </div>
+    <nav class="home-links">
+        <span class="bodySmall home-link">Home</span>
+        <span class="home-nav42 bodySmall home-link" onclick="openDestinationsPage()">Destinations</span>
+        <button type="button" class="btn btn-link home-link" data-toggle="modal" data-target="#contactModal">Contact</button>
+        <button type="button" class="btn btn-link home-link" data-toggle="modal" data-target="#PricingModal">Pricing</button>
+    </nav>
+    
+            <div class="home-buttons">
+                <div class="home-buttons">
+                    <button class="home-login buttonFlat" id="loginButton"  onclick="openLoginPage()">Login</button>
+                    <button class="home-logout buttonFlat" id="logoutButton"onclick="logout()">Logout</button>
+                    </div>
+                
+            </div>
+        </header>
+    
+        <div class="home-hero">
+            <div class="heroContainer home-hero1">
+                <div class="home-container01">
+                    <h1 class="home-hero-heading heading1">Welcome to Skyline</h1>
+                    <span class="home-hero-sub-heading bodyLarge ">
+                        <span>Navigate your airline operations with ease and efficiency – soar to new heights with our advanced airline management system</span>
+                    </span>
+                    <div class="home-btn-group">
+                        <button class="buttonFilled home-link" onclick="openBookingPage()">Ticket Information!</button>
+                        <button class="buttonFlat home-link" onclick="openLearnMore()">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    <section class="featureSection">
+        <div class="featureContainer home-container">
+            <h2 class="section-heading">Features</h2>
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://images.pexels.com/photos/746500/pexels-photo-746500.jpeg?auto=compress&cs=tinysrgb&w=600" class="d-block w-100" alt="baggage">
+                        <div class="carousel-caption d-none d-md-block">
+                            <button type="button" id="" class="btn btn-link" onclick="openPassenger()">
+                                <h2>Passenger</h2>
+                            </button>
+                            <p>Effortlessly track baggage from check-in to destination with real-time updates and comprehensive information</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.pexels.com/photos/14186727/pexels-photo-14186727.jpeg?auto=compress&cs=tinysrgb&w=600" class="d-block w-100" alt="crew">
+                        <div class="carousel-caption d-none d-md-block">
+                            <button type="button" id="" class="btn btn-link" onclick="openCrew()">
+                                <h2>View The Crew</h2>
+                            </button>
+                            <p>Efficiently view and manage crew schedules, assignments, and availability, ensuring smooth operations and optimal staffing</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.pexels.com/photos/3226808/pexels-photo-3226808.jpeg?auto=compress&cs=tinysrgb&w=600" class="d-block w-100" alt="travel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#travelpartnerModal">
+                                <h2>Travel Partners</h2>
+                            </button>
+                            <p>Seamlessly collaborate with trusted travel partners, streamline processes, and enhance customer experience with integrated partner functionalities</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+      <!-- Pricing Section -->
+      <section class="f1Section">
+        <div class="f1Container home-container">
+            <h2 class="section-heading">Features</h2>
+            <div class="f1-grid">
+                <div class="f1-card">
+                    <h3 class="f1-title">Flight Info</h3>
+                    <p class="f1-description">Check all the informationabout flights here</p>
+                    <button class="buttonFilled" onclick="openFlightPage()">view info</button>
+                </div>
+                <div class="f1-card">
+                    <h3 class="pricing-title">Payment Revenue</h3>
+                    <p class="pricing-description">Check the sub tota of all flights and airlines</p>
+                    <button class="buttonFilled" onclick="openPaymentRev()">view info</button>
+                </div>
+                <div class="f1-card">
+                    <h3 class="f1-grid">Feedback</h3>
+                    <p class="f1-description">Check feedback from all passemgers</p>
+                    <button class="buttonFilled" onclick="openfeedback()">view feedback</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container-fluid custom-container">
+        <h1>Why Use SKYLINE?</h1>
+        <p>We provide the best deals in Pakistan</p>
+      
+        <div class="row">
+          <div class="col-lg-4 text-center">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="image1.jpg" alt="Placeholder image">
+            <h2>Wide Selection</h2>
+            <p>Skyline provides access to a vast range of airlines and routes, allowing you to 
+              choose from numerous options to find the best fit for your travel needs.</p>
+          </div>
+      
+          <div class="col-lg-4 text-center">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="copy1.jpg" alt="Placeholder image">
+            <h2>User-Friendly Interface</h2>
+            <p>The platform offers an intuitive and easy-to-use interface, making it simple to search for flights, 
+              compare prices, and make bookings without hassle.</p>
+          </div>
+      
+          <div class="col-lg-4 text-center">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="download.jpg" alt="Placeholder image">
+            <h2>Competitive Prices</h2>
+            <p>Skyline often offers competitive prices and deals, 
+              helping you save money on your travel expenses while still providing a high level of service and reliability.</p>
+          </div>
+        </div>
+      </div>
+<footer class="footerContainer home-footer1">
+    <div class="home-container31">
+        <span class="sky">SKYWAYS</span>
+        <nav class="home-nav1">
+            <span class="bodySmall">Home</span>
+            <span class="home-nav222 bodySmall">Flights</span>
+            <span class="home-nav322 bodySmall">Services</span>
+            <span class="home-nav422 bodySmall" onclick="openDestinationsPage()">Destinations</span>
+            <span class="home-nav522 bodySmall">Contact</span>
+        </nav>
+    </div>
+</footer>
+    
+    
+  
+  
+</div>
+      <!-- MODALS -->
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Email <a href="mailto:skyline@gmail.com">skyline@gmail.com</a></li>
+                    <li>Instagram <a href="#">SkyLine Social Media controller: Abdul Wahab</a></li>
+                    <li>Address: Comsats, Lahore.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pricing Modal -->
+<div class="modal fade" id="PricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section class="pricingSection">
+                    <div class="pricingContainer home-container">
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <h3 class="pricing-title">Economy Class</h3>
+                                <p class="pricing-description">Average Price for economy ticket</p>
+                                <p class="pricing-price">5,000 PKR to 15,000 PKR</p>
+                            </div>
+                            <div class="pricing-card">
+                                <h3 class="pricing-title">First Class</h3>
+                                <p class="pricing-description">Average Price for First Class ticket</p>
+                                <p class="pricing-price">25,000 PKR +</p>
+                            </div>
+                            <div class="pricing-card">
+                                <h3 class="pricing-title">Special SkyLine</h3>
+                                <p class="pricing-description">Special discounted tickets for SkyLine members</p>
+                                <p class="pricing-price">4,000 to 50,000 PKR</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="viewCrewModal" tabindex="-1" aria-labelledby="viewCrewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewCrewModalLabel">View Crew Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+           <!--- <div class="modal-body">
+                <div class="container">
+                    <h2>Get All Flight Crew</h2>
+                    <button onclick="getAllFlightCrew()">Get All</button>
+                    <pre id="allFlightCrew"></pre>
+                
+                    <h2>Get Flight Crew By ID</h2>
+                    <input type="text" id="crewId" placeholder="Enter ID">
+                    <button onclick="getFlightCrewById()">Get By ID</button>
+                    <pre id="flightCrewById"></pre>
+                
+                    <h2>Create Flight Crew Member</h2>
+            <input type="text" id="newCrewId" placeholder="Enter ID">
+            <input type="text" id="newFirstName" placeholder="Enter First Name">
+            <input type="text" id="newLastName" placeholder="Enter Last Name">
+            <input type="text" id="newGender" placeholder="Enter Gender">
+            <input type="text" id="newPosition" placeholder="Enter Position">
+            <input type="text" id="newAddress" placeholder="Enter Address">
+            <input type="text" id="newContactPhone" placeholder="Enter Contact Phone">
+            <input type="text" id="newContactEmail" placeholder="Enter Contact Email">
+            <input type="text" id="newFlightId" placeholder="Enter Flight ID">
+            <button onclick="createFlightCrew()">Create</button>
+            <pre id="createdFlightCrew"></pre>
+            
+                
+                    <h2>Update Flight Crew Member</h2>
+                    <input type="text" id="updateCrewId" placeholder="Enter ID">
+                    <input type="text" id="updateFirstName" placeholder="Enter New First Name">
+                    <input type="text" id="updateLastName" placeholder="Enter New Last Name">
+                    <input type="text" id="updateGender" placeholder="Enter New Gender">
+                    <input type="text" id="updatePosition" placeholder="Enter New Position">
+                    <input type="text" id="updateAddress" placeholder="Enter New Address">
+                    <input type="text" id="updateContactPhone" placeholder="Enter New Contact Phone">
+                    <input type="text" id="updateContactEmail" placeholder="Enter New Contact Email">
+                    <input type="text" id="updateFlightId" placeholder="Enter New Flight ID">
+                    <button onclick="updateFlightCrew()">Update</button>
+                    <pre id="updatedFlightCrew"></pre>
+                
+                    <h2>Delete Flight Crew Member</h2>
+                    <input type="text" id="deleteCrewId" placeholder="Enter ID">
+                    <button onclick="deleteFlightCrew()">Delete</button>
+                    <pre id="deletedFlightCrew"></pre>
+                
+                
+                  </div>
+                  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>-->
+    </div>
+</div>
+</div>
+<!----------------------------------------------------------------------------------------------------------->
+
+<div class="modal fade" id="travelpartnerModal" tabindex="-1" aria-labelledby="travelpartnerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="travelpartnerModalLabel">Travel Partners</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success spaced-button" onclick="fetchData('airport')">Airports</button>
+                    <button type="button" class="btn btn-success spaced-button" onclick="fetchData('aircraft')">Aircrafts</button>
+                    <button type="button" class="btn btn-success spaced-button" onclick="fetchData('airline')">Airlines</button>
+                </div>
+            </div>
+            <div id="dataContainer"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+
+
+    <script>
+    function toggleMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode'); 
+}
+
+
+function checkLoginStatus() {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    const loginButton = document.getElementById('loginButton');
+    const logoutButton = document.getElementById('logoutButton');
+    const protectedElements = document.querySelectorAll('.home-link, #contactModal, #PricingModal, #carouselExampleCaptions, .f1-card button,.btn,.container-fluid,.bd-placeholder-img ');
+
+    protectedElements.forEach(element => {
+        if (!isLoggedIn) {
+            element.style.pointerEvents = 'none';
+            element.style.opacity = '0.5';
+        } else {
+            element.style.pointerEvents = 'auto';
+            element.style.opacity = '1';
+        }
+    });
+
+    if (!isLoggedIn) {
+        document.getElementById('popupMessage').style.display = 'block';
+        loginButton.style.display = 'block';
+        logoutButton.style.display = 'none';
+    } else {
+        document.getElementById('popupMessage').style.display = 'none';
+        loginButton.style.display = 'none';
+        logoutButton.style.display = 'block';
+    }
+}
+
+function openLoginPage() {
+    console.log("Login button clicked"); 
+    window.location.href = 'login.html'; 
+    sessionStorage.setItem('isLoggedIn', true);
+    checkLoginStatus(); 
+}
+
+function logout() {
+    console.log("Logout button clicked"); 
+    sessionStorage.removeItem('isLoggedIn');
+    window.location.reload(); 
+}
+
+
+
+        function openBookingPage() {
+            window.location.href = 'FrontEnd/booking.html';
+        }
+
+        function openLearnMore() {
+            window.location.href = 'FrontEnd/learnmore.html';
+        }
+
+        function openfeedback(){
+    window.open("FrontEnd/feedback.html");
+  }
+
+
+     function openDestinationsPage() {
+              window.location.href = 'FrontEnd/destination.html';
+            }
+         
+            function openPassenger(){
+    window.open("FrontEnd/passenger.html");
+  }
+
+
+    
+  function openCrew(){
+    window.open("FrontEnd/crew.html");
+  }
+
+  function openFlightPage(){
+    window.open("FrontEnd/flight.html");
+  }
+
+
+
+  function openPaymentRev(){
+    window.open("FrontEnd/revenue.html");
+
+  }
+
+            document.addEventListener('DOMContentLoaded', () => {
+    checkLoginStatus();
+    if (sessionStorage.getItem('isLoggedIn')) {
+        document.getElementById('popupMessage').style.display = 'none';
+    }
+});
+
+
+
+
+function fetchData(type) {
+    fetch(`http://localhost:5900/${type}`)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('dataContainer');
+            container.innerHTML = '';
+
+            const table = document.createElement('table');
+            table.classList.add('table', 'table-striped');
+
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            const headerRow = document.createElement('tr');
+            const keys = Object.keys(data[0]);
+            keys.forEach(key => {
+                const th = document.createElement('th');
+                th.textContent = key;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                keys.forEach(key => {
+                    const td = document.createElement('td');
+                    td.textContent = item[key];
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            container.appendChild(table);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+
+
+
+
+
+
+
+
+
+
+ // Function to fetch flight crew data from the server
+ /*async function fetchFlightCrew() {
+            const response = await fetch('http://localhost:5900/flightcrew');
+            const data = await response.json();
+            return data;
+        }
+
+        // Function to display flight crew data in the table
+        function displayFlightCrew(data) {
+            const tableBody = document.getElementById('crewTableBody');
+            tableBody.innerHTML = '';
+            data.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${member.flightcrew_id}</td>
+                    <td>${member.first_name}</td>
+                    <td>${member.last_name}</td>
+                    <td>${member.gender}</td>
+                    <td>${member.position}</td>
+                    <td>${member.address}</td>
+                    <td>${member.contact_phone}</td>
+                    <td>${member.contact_email}</td>
+                    <td>${member.flight_id}</td>
+                    <td>
+                        <button onclick="editCrew('${member.flightcrew_id}')">Edit</button>
+                        <button onclick="deleteCrew('${member.flightcrew_id}')">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to open modal for adding or editing flight crew
+        function openModal() {
+            const modal = document.getElementById('crewFormModal');
+            modal.style.display = 'block';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            const modal = document.getElementById('crewFormModal');
+            modal.style.display = 'none';
+        }
+
+        // Function to handle form submission for adding or updating flight crew
+        async function submitForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Check if flightcrew_id exists, if not, it means we're adding a new crew member
+            if (!data.flightcrew_id) {
+                addNewCrew(data);
+            } else {
+                // If flightcrew_id exists, it means we're editing an existing crew member
+                // So, proceed with the regular form submission logic for editing
+                let url = 'http://localhost:5900/flightcrew';
+                let method = 'POST';
+                if (data.flightcrew_id) {
+                    url += `/${data.flightcrew_id}`;
+                    method = 'PUT';
+                }
+
+                try {
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    if  (response.ok) {
+                        closeModal();
+                        fetchAndDisplayFlightCrew();
+                    } else {
+                        throw new Error('Failed to submit form');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
+
+        // Function to add a new flight crew member
+        async function addNewCrew(data) {
+            try {
+                const response = await fetch('http://localhost:5900/flightcrew', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    closeModal();
+                    fetchAndDisplayFlightCrew();
+                } else {
+                    throw new Error('Failed to submit form');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Function to edit flight crew member
+        async function editCrew(id) {
+            const response = await fetch(`http://localhost:5900/flightcrew/${id}`);
+            const data = await response.json();
+            const form = document.getElementById('crewForm');
+            // Clear the form first
+            form.reset();
+            for (let key in data) {
+                if (form.elements[key]) {
+                    form.elements[key].value = data[key];
+                }
+            }
+            // Add flightcrew_id to the form for editing
+            form.elements['flightcrew_id'].value = id;
+            openModal();
+        }
+
+        // Function to delete flight crew member
+        async function deleteCrew(id) {
+            if (confirm('Are you sure you want to delete this flight crew member?')) {
+                try {
+                    const response = await fetch(`http://localhost:5900/flightcrew/${id}`, {
+                        method: 'DELETE'
+                    });
+                    if (response.ok) {
+                        fetchAndDisplayFlightCrew();
+                    } else {
+                        throw new Error('Failed to delete flight crew member');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
+
+        // Function to fetch and display flight crew data
+        async function fetchAndDisplayFlightCrew() {
+            const data = await fetchFlightCrew();
+            displayFlightCrew(data);
+        }
+
+        // Initialize page
+        window.onload = () => {
+            fetchAndDisplayFlightCrew();
+            const addCrewButton = document.getElementById('addCrewButton');
+            addCrewButton.addEventListener('click', openModal);
+            const closeButton = document.getElementsByClassName('close')[0];
+            closeButton.addEventListener('click', closeModal);
+            const form = document.getElementById('crewForm');
+            form.addEventListener('submit', submitForm);
+        };
+*/
+
+
+</script>
+
+</body>
+
+</html>

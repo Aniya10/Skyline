@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Booking</title>
+ <link rel="stylesheet" href="booking.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB5IXNFci2iMcBzmRlTQTG8wIPoYqeYF1d3RUTjPJzkK9x1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-es2wKZ4/K5XA3Bt/6wKq5ESwaJ1dmv9v2V6cVXn6F" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header class="navbarContainer home-navbar-interactive">
+    <span class="logo">SkyLine<img src="logo1.png" alt="" style="max-height: 25px; margin-left: 2px; margin-bottom: 5px;"></span>
+    <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <nav class="home-links">
+        <span class="bodySmall home-link" onclick="openHomePage()">Home</span>
+        <span class="home-nav42 bodySmall home-link" onclick="openDestinationsPage()">Destinations</span>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#contactModal">Contact</button>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#PricingModal">Pricing</button>
+    </nav>
+</header>
+
+  <div class="flight-booking-container">
+    <div class="flight-booking">
+        <h3><b><large>Tickets Booking Information</large></b></h3>
+        <div class="inner-container">
+            <div class="row">
+                <div class="Booking-id">
+                    <label for="searchBooking-id">Search Booking-id:</label>
+                    <input type="text" id="searchBooking-id" placeholder="Enter Booking-id">
+                    <button class="search-booking" onclick="fetchBookingById()">Search</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="Booking-id">
+                    <label for="Booking-id">Booking-id:</label>
+                    <input type="text" id="Booking-id" placeholder="Booking-id" readonly>
+                </div>
+                <div class="date/time">
+                    <label for="date/time">Date-Time:</label>
+                    <input type="text" id="date/time" placeholder="2024-05-10 08:00:00" readonly>
+                </div>
+                <div class="seat">
+                    <label for="seat">Seat No:</label>
+                    <input type="text" id="seat" placeholder="" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ticket">
+                    <label for="ticket">Ticket:</label>
+                    <input type="text" id="ticket" placeholder="Ticket No" readonly>
+                </div>
+                <div class="status">
+                    <label for="status">Status:</label>
+                    <input type="text" id="status" placeholder="" readonly>
+                </div>
+                <div class="class-type">
+                    <label for="class-type">Class: </label>
+                    <input type="text" id="class-type" value="Class type" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="Flight-ID">
+                    <label for="Flight-ID">Flight-ID: </label>
+                    <input type="text" id="Flight-ID" value="" readonly>
+                </div>
+                <div class="Passenger-ID">
+                    <label for="Passenger-ID">Passenger-ID: </label>
+                    <input type="text" id="Passenger-ID" value="" readonly>
+                </div>
+                <button class="edit-booking" onclick="enableEditing()">Update</button>
+                <button class="save-booking" onclick="updateBooking()" hidden>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+ 
+
+<div class="faq-container">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-questions">
+    <button class="faq-question">What are the requirements for booking a ticket?</button>
+    <div class="faq-answer" hidden>After you have selected your desired seat/booking you may be required to fill in some details for verification and validation such as, Name, Phone number, Email and CNIC.</div>
+    <button class="faq-question">Can I choose my own seat?</button>
+    <div class="faq-answer" hidden>Absolutely! The initial step for ticket booking will allow you to view the available seats. You will be able to select from these available options and book your seat immediately.</div>
+    <button class="faq-question">What information will I be able to see during my ticket purchase?</button>
+    <div class="faq-answer" hidden>Using Bookme to purchase your tickets , you will be able to view:
+      The timings and schedules for the occasion or journey you’re trying to book.
+      Availability and seating plans so you know exactly what you’re purchasing and that you’re paying the best price for it.
+      A set of options for you to lock your ticket and pay using your preferred digital payment method.</div>
+    <button class="faq-question">How can I purchase E-Tickets once I have selected my seats?</button>
+    <div class="faq-answer" hidden>You can purchase E-Tickets using a variety of popular online payment methods mentioned below:
+      Debit/Credit Cards (Local & International)
+      Easypaisa
+      Jazz Cash
+      Bank Transfer</div>
+  </div>
+</div>
+
+
+
+<footer class="pt-5">
+  <div class="d-flex flex-row justify-content-around">
+    <div>
+      <h3><b>Services</b></h3>
+      <p>Bus Booking</p>
+      <p>Flights Booking</p>
+      <p>Movie Booking</p>
+      <p>Event Booking</p>
+      <p>Train Booking</p>
+      <p>Car Rental Booking</p>
+      <p>Hotels Booking</p>
+      <p>Tours Booking</p>
+    </div>
+    
+    <div>
+      <h3><b>Company</b></h3>
+      <p>About Us</p>
+      <p>FAQ</p>
+      <p>Contact Us</p>
+      <p>Blogs</p>
+      <p>Announcements</p>
+      <p>Terms & Conditions</p>
+      <p>Privacy Policy</p>
+    </div>
+    
+    <div>
+      <h3><b>Top Flights</b></h3>
+      <p>PIA Booking</p>
+      <p>Serene Air Booking</p>
+      <p>AirBlue Booking</p>
+      <p>Emirates Booking</p>
+      <p>Etihad Booking</p>
+      <p>Qatar Airways Booking</p>
+      <p>Turkish Airlines Booking</p>
+      <p>Air Sial Booking</p>
+      <p>FlyDubai Booking</p>
+      <p>FlyJinnah Booking</p>
+      <p>Jazeera Airways Booking</p>
+      <p>Malindo Air Booking</p>
+      <p>Oman Air Booking</p>
+      <p>Srilankan Airlines Booking</p>
+      <p>Kuwait Airways Booking</p>
+      <p>FlyBaghdad Booking</p>
+    </div>
+    <div>
+      <h3><b>Top Buses</b></h3>
+      <p>Road Master Booking</p>
+      <p>Silk Line Booking</p>
+      <p>FM Bilal Travel Booking</p>
+      <p>Daewoo Express Booking</p>
+      <p>Kainat Travels Booking</p>
+      <p>Khan Brothers Booking</p>
+      <p>Skyways Booking</p>
+      <p>Shahid Coach Booking</p>
+      <p>PAKLINES Booking</p>
+      <p>Rajput Travels Rathore Group Booking</p>
+      <p>QConnect Booking</p>
+      <p>Crystal Lines Booking</p>
+    </div>
+    
+    <div>
+      <h3><b>Explore</b></h3>
+      <p>Cheap International Flights</p>
+      <p>Cheap Domestic Flights</p>
+      <p>Airport Directory</p>
+      <p>Airline Directory</p>
+      <p>Flight Schedules</p>
+      <p>Hotel Chains</p>
+    </div>
+    
+  </div>
+<br>
+
+  <hr>
+  <div class="d-flex flex-row justify-content-between mx-5 pt-5">
+    <div class="d-flex flex-row gap-5">
+      <p class="d-flex align-items-center gap-2">
+        &copy; 2024 SKYLINE <img src="logo1.png" alt="" style="max-height: 20px; margin-left: 5px;">
+      </p>
+      
+    </div>
+    <div class="d-flex flex-row gap-5 px-5 py-3">
+      <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-snapchat"></i></a>
+    </div>
+    
+    
+  </div>
+</footer>
+
+ <!-- contact MODALS -->
+
+ <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <ul>
+                  <li>Email <a href="mailto:skyline@gmail.com">skyline@gmail.com</a></li>
+                  <li>Instagram <a href="#">SkyLine Social Media controller: Abdul Wahab</a></li>
+                  <li>Address: Comsats, Lahore.</li>
+              </ul>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Pricing Modal -->
+<div class="modal fade" id="PricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <section class="pricingSection">
+                  <div class="pricingContainer home-container">
+                      <div class="pricing-grid">
+                          <div class="pricing-card">
+                              <h3 class="pricing-title">Economy Class</h3>
+                              <p class="pricing-description">Average Price for economy ticket</p>
+                              <p class="pricing-price">5,000 PKR to 15,000 PKR</p>
+                          </div>
+                          <div class="pricing-card">
+                              <h3 class="pricing-title">First Class</h3>
+                              <p class="pricing-description">Average Price for First Class ticket</p>
+                              <p class="pricing-price">25,000 PKR +</p>
+                          </div>
+                          <div class="pricing-card">
+                              <h3 class="pricing-title">Special SkyLine</h3>
+                              <p class="pricing-description">Special discounted tickets for SkyLine members</p>
+                              <p class="pricing-price">4,000 to 50,000 PKR</p>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+
+function openHomePage() {
+    window.location.href = '../home.html';
+}
+
+
+function openDestinationsPage() {
+              window.location.href = 'destination.html';
+            }
+         
+      
+
+
+
+  async function fetchBookingById() {
+      const bookingId = document.getElementById('searchBooking-id').value;
+      if (!bookingId) {
+          alert('Please enter a booking ID.');
+          return;
+      }
+
+      try {
+          const response = await fetch(`http://localhost:5900/booking/${bookingId}`);
+          if (!response.ok) {
+              throw new Error('Booking not found');
+          }
+          const booking = await response.json();
+          populateBookingInfo(booking);
+      } catch (error) {
+          console.error('Error fetching booking:', error);
+          alert('Error fetching booking data. Please try again.');
+      }
+  }
+
+  function populateBookingInfo(booking) {
+      document.getElementById('Booking-id').value = booking.booking_id;
+      document.getElementById('date/time').value = new Date(booking.booking_datetime).toLocaleString();
+      document.getElementById('seat').value = booking.seat_number;
+      document.getElementById('ticket').value = booking.ticket_number;
+      document.getElementById('status').value = booking.status;
+      document.getElementById('class-type').value = booking.cabin_class;
+      document.getElementById('Flight-ID').value = booking.flight_id;
+      document.getElementById('Passenger-ID').value = booking.passenger_id;
+  }
+  function enableEditing() {
+      const fields = ['Booking-id', 'date/time', 'seat', 'ticket', 'status', 'class-type', 'Flight-ID', 'Passenger-ID'];
+      fields.forEach(id => document.getElementById(id).readOnly = false);
+      document.querySelector('.save-booking').hidden = false;
+    }
+
+    async function updateBooking() {
+  const booking = {
+    booking_id: document.getElementById('Booking-id').value,
+    booking_datetime: new Date(document.getElementById('date/time').value).toISOString(),
+    seat_number: document.getElementById('seat').value,
+    ticket_number: document.getElementById('ticket').value,
+    status: document.getElementById('status').value,
+    cabin_class: document.getElementById('class-type').value,
+    flight_id: document.getElementById('Flight-ID').value,
+    passenger_id: document.getElementById('Passenger-ID').value
+  };
+
+  try {
+    const response = await fetch(`http://localhost:5900/booking/${booking.booking_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(booking)
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update booking');
+    }
+
+    alert('Booking updated successfully');
+    document.querySelector('.save-booking').hidden = true;
+    const fields = ['Booking-id', 'date/time', 'seat', 'ticket', 'status', 'class-type', 'Flight-ID', 'Passenger-ID'];
+    fields.forEach(id => document.getElementById(id).readOnly = true);
+  } catch (error) {
+    console.error('Error updating booking:', error);
+    alert('Error updating booking. Please try again.');
+  }
+}
+
+</script>
+ <script src="booking.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</body>
+</html>
+
